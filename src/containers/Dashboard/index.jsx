@@ -4,8 +4,9 @@ import { Switch, Route, NavLink } from 'react-router-dom';
 import Expenses from '../Expenses';
 import Income from '../Income';
 import Categories from '../Categories';
+import AppMenu from '../../components/AppMenu';
 
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 import {
   DesktopOutlined,
   PieChartOutlined,
@@ -16,8 +17,9 @@ import {
 
 import './index.css';
 
+import { menu } from './menu';
+
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 
 const Dashboard = () => {
 
@@ -31,46 +33,7 @@ const Dashboard = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="vertical">
-          <Menu.Item key="1">
-            <NavLink to={'/expenses'} key={'1'}>
-              <PieChartOutlined />
-              <span>Option 1</span>
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <DesktopOutlined />
-            <span>Option 2</span>
-          </Menu.Item>
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <UserOutlined />
-                <span>User</span>
-              </span>
-            }
-          >
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <TeamOutlined />
-                <span>Team</span>
-              </span>
-            }
-          >
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="9">
-            <FileOutlined />
-          </Menu.Item>
-        </Menu>
+        <AppMenu menu={menu} />
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }} />
@@ -89,7 +52,7 @@ const Dashboard = () => {
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
-    </Layout>
+    </Layout >
   );
 };
 
